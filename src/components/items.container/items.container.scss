@@ -1,0 +1,25 @@
+.box-wrapper {
+    .header-container {
+        margin: 20px 5%;
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2rem;
+        }
+        .action-buttons-container {
+            text-align: right;
+            .pagination-icons {
+                display: inline-block;
+                >i {
+                    margin: 0 5px;
+                }
+            }
+            .cart-bag-icon {
+                display: inline-block;
+                margin-left: 20px;
+            }
+        }
+    }
+    .items-container {
+        margin: 50px 5% 20px;
+    }
+}

@@ -1,0 +1,111 @@
+ .item-card {
+     &:hover {
+         .wrapper-img {
+             .exchange-now {
+                 opacity: 1;
+             }
+             .hover-img {
+                 background: rgba(255, 103, 0, .70);
+             }
+             i.icon {
+                 &.orange {
+                     font-size: 1.3rem;
+                     background: #fff;
+                     color: #ff8700;
+                     border-radius: 20px;
+                     padding: 10px;
+                 }
+             }
+         }
+     }
+     .wrapper-img {
+         position: relative;
+         .hover-img {
+             width: 100%;
+             height: 100%;
+             box-sizing: border-box;
+             position: absolute;
+             transition: all 0.3s ease-in-out;
+         }
+         span.left-coints {
+             position: absolute;
+             top: 20px;
+             right: 10px;
+             font-family: 'Poppins', sans-serif;
+             font-size: 0.7rem;
+             font-weight: bold;
+             padding: 5px 15px;
+             background: rgba(0, 0, 0, 0.5);
+             color: #fff;
+             border-radius: 20px;
+         }
+         i.icon {
+             position: absolute;
+             top: 20px;
+             right: 10px;
+             &.orange {
+                 transition: all 0.3s ease-in-out;
+                 font-size: 1.3rem;
+                 background: linear-gradient(to bottom, #ff8800 0%, #ff6700 100%);
+                 color: #fff;
+                 border-radius: 20px;
+                 padding: 10px;
+             }
+             &.wite {
+                 font-size: 1.3rem;
+                 background: #fff;
+                 color: #ff8700;
+                 border-radius: 20px;
+                 padding: 10px;
+             }
+         }
+         .exchange-now {
+             transition: all 0.3s ease-in-out;
+             opacity: 0;
+             position: absolute;
+             bottom: 25px;
+             width: 100%;
+             padding: 0px 20px;
+             box-sizing: border-box;
+             p {
+                 font-size: 2rem;
+                 font-family: 'Roboto', sans-serif;
+                 color: #ffffff;
+                 font-weight: bold;
+                 text-align: left;
+             }
+             button.exchange-button {
+                 font-family: 'Poppins', sans-serif;
+                 font-size: 0.7rem;
+                 font-weight: bold;
+                 text-transform: uppercase;
+                 padding: 10px 15px;
+                 background: #ffffff;
+                 width: 100%;
+                 border-radius: 20px;
+                 border: none;
+                 color: #ff6600;
+                 letter-spacing: -0.33px;
+                 text-align: center;
+                 cursor:pointer;
+             }
+         }
+     }
+     h2,
+     h3 {
+         font-family: 'Roboto', sans-serif;
+     }
+     h2 {
+         margin: 15px 0 5px;
+         font-size: 16px;
+         color: #000000;
+         letter-spacing: -0.04px;
+         text-align: left;
+     }
+     h3 {
+         font-size: 14px;
+         color: rgba(0, 0, 0, 0.48);
+         letter-spacing: -0.04px;
+         text-align: left;
+     }
+ }

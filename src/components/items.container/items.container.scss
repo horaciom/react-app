@@ -1,25 +1,80 @@
+@import '../../utils/styles/_mixin.scss';
 .box-wrapper {
     .header-container {
         margin: 20px 5%;
         h1 {
             font-family: 'Roboto', sans-serif;
-            font-size: 2rem;
+            font-size: 3vw;
+            @include for-size(phone-only) {
+                font-size: 7vw;
+                margin-bottom: 20px;
+            }
         }
         .action-buttons-container {
             text-align: right;
+            @include for-size(phone-only) {
+                text-align: left;
+            }
             .pagination-icons {
+                @include for-size(phone-only) {
+                    display: none;
+                }
                 display: inline-block;
                 >i {
-                    margin: 0 5px;
+                    transition: all 0.1s ease-in-out;
+                    &:hover {
+                        color: #ff6600;
+                        border-color: #ff6600;
+                    }
+                    cursor: pointer;
+                    margin: 0 15px 0 0;
                 }
             }
             .cart-bag-icon {
+                cursor: pointer;
                 display: inline-block;
                 margin-left: 20px;
+                @include for-size(phone-only) {
+                    float: right;
+                }
             }
         }
     }
     .items-container {
         margin: 50px 5% 20px;
+        .wrapper-slide {
+            max-height: 750px;
+            overflow: hidden;
+        }
+        ul {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            list-style: none;
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+            li {
+                position: relative;
+                margin: 0 10px 20px 10px;
+                @include for-size(phone-only) {
+                    width: 100%;
+                }
+                @include for-size(tablet-portrait-up) {
+                    width: 45%;
+                }
+                @include for-size(tablet-landscape-up) {
+                    width: 31%;
+                }
+                @include for-size(desktop-up) {
+                    width: 23%;
+                }
+            }
+        }
     }
 }

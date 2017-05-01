@@ -1,41 +1,69 @@
 require('./item.card.scss');
+var classNames = require('classnames');
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 
 export default class ItemCard extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { active: false, canBuy: false };
+    }
+
+    mouseHover() {
+        this.setState({ active: true });
+    }
+
+    mouseLeave() {
+        this.setState({ active: false });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const userCash = nextProps.user.cash;
+        const price = nextProps.data.price;
+        this.setState({ canBuy: (+userCash >= +price) , leftCoin:(+price - +userCash) });
+    }
+
     render() {
-        var divImage = {
-            backgroundImage: "url('https://placeholdit.imgix.net/~text?txtsize=33&txt=250%C3%97250&w=250&h=250')",
-            width: '100%',
-            height: '300px',
-            backgroundPosition: 'center center',
-            backgroundSize: 'contain'
-        };
+
+        const user = this.props.user;
+        const leftCoin = this.state.leftCoin;
+        const classes = classNames('hover-effect column', { active: this.state.active, 'can-buy': this.state.canBuy }  );
+        const image = this.props.data.image;
+        const price = this.props.data.price;
+        const category = this.props.data.category;
+        const title = this.props.data.title;
+
+        const styles = {
+            root: {
+                backgroundImage: `url(${image})`,
+            }
+        }    
 
         return (
-            <article className="col span_1_of_4 item-card">
-                <div className="wrapper-img" style={divImage}>
-                    <div className="hover-img"></div>
+            <li className="item-card">
+                <div className={classes} onMouseEnter={this.mouseHover.bind(this)} onMouseLeave={this.mouseLeave.bind(this)}>
 
-                    <span className="left-coints" style={{display:'none'}}>TE FALTAN <i className="coin"></i> 1.200 </span>
+                    <figure style={styles.root}>  </figure>
 
-                    <i className="material-icons icon orange">local_mall</i>
+                    <span className="left-coints" > {leftCoin > 1 ? 'TE FALTAN' : 'TE FALTA'} <i className="coin"></i> {leftCoin} </span>
+
+                    <i className="material-icons icon orange" >local_mall</i>
 
                     <div className="exchange-now">
                         <p>
-                            <span> <i className="coin-big "></i> 1.800</span>
-
+                            <span> <i className="coin-big "></i> {price}</span>
                         </p>
                         <p>
                             <button className="exchange-button">Canjear ahora</button>
                         </p>
                     </div>
                 </div>
-                <h2>Sandalia Pale Gold YSL</h2>
-                <h3>Indumentaria</h3>
+                <h2>{title}</h2>
+                <h3>{category}</h3>
+            </li>
 
-            </article>
         )
     }
 }

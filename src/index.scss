@@ -1,13 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://example.com/MaterialIcons-Regular.eot);
-  /* For IE6-8 */
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
-}
+
+@import url('//cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css');
+@import './utils/styles/fonts.scss';
 
 * {
   margin: 0;
@@ -15,97 +8,8 @@
 }
 
 
-/*  SECTIONS  */
-
-.section {
-  clear: both;
-  padding: 0px;
-  margin: 0px;
-}
-
-
-/*  COLUMN SETUP  */
-
-.col {
-  display: block;
-  float: left;
-  margin: 0 0 0 1.6%;
-}
-
-.col:first-child {
-  margin-left: 0;
-}
-
-
-/*  GROUPING  */
-
-.group:before,
-.group:after {
-  content: "";
-  display: table;
-}
-
-.group:after {
-  clear: both;
-}
-
-.group {
-  zoom: 1;
-  /* For IE 6/7 */
-}
-
-
-/*  GRID OF FOUR  */
-
-.span_4_of_4 {
-  width: 100%;
-}
-
-.span_3_of_4 {
-  width: 74.6%;
-}
-
-.span_2_of_4 {
-  width: 49.2%;
-}
-
-.span_1_of_4 {
-  width: 23.8%;
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  /* Preferred icon size */
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-  /* Support for IE. */
-  font-feature-settings: 'liga';
-  &.base-state {
-    padding: 10px;
-    border: solid 1px #d0d0d0;
-    border-radius: 25px;
-    color: #d0d0d0;
-  }
-}
-
-$icon-coin-tiny-url: './assets/images/coin-tiny.png';
-$icon-coin-url: './assets/images/coin.png';
+$icon-coin-tiny-url: './utils/images/coin-tiny.png';
+$icon-coin-url: './utils/images/coin.png';
 .coin {
   width: 24px;
   height: 24px;
@@ -126,17 +30,3 @@ $icon-coin-url: './assets/images/coin.png';
   }
 }
 
-
-/*  GO FULL WIDTH BELOW 480 PIXELS */
-
-@media only screen and (max-width: 480px) {
-  .col {
-    margin: 1% 0 1% 0%;
-  }
-  .span_1_of_4,
-  .span_2_of_4,
-  .span_3_of_4,
-  .span_4_of_4 {
-    width: 100%;
-  }
-}

@@ -1,33 +1,29 @@
  .item-card {
-     &:hover {
-         .wrapper-img {
-             .exchange-now {
-                 opacity: 1;
-             }
-             .hover-img {
-                 background: rgba(255, 103, 0, .70);
-             }
-             i.icon {
-                 &.orange {
-                     font-size: 1.3rem;
-                     background: #fff;
-                     color: #ff8700;
-                     border-radius: 20px;
-                     padding: 10px;
-                 }
-             }
-         }
+     h2,
+     h3 {
+         font-family: 'Roboto', sans-serif;
      }
-     .wrapper-img {
+     h2 {
+         margin: 15px 0 5px;
+         font-size: 16px;
+         color: #000000;
+         letter-spacing: -0.04px;
+         text-align: left;
+     }
+     h3 {
+         font-size: 14px;
+         color: rgba(0, 0, 0, 0.48);
+         letter-spacing: -0.04px;
+         text-align: left;
+     }
+     figure {
+         background: #fff;
+         overflow: hidden;
+     }
+     .hover-effect {
          position: relative;
-         .hover-img {
-             width: 100%;
-             height: 100%;
-             box-sizing: border-box;
-             position: absolute;
-             transition: all 0.3s ease-in-out;
-         }
          span.left-coints {
+             display: block;
              position: absolute;
              top: 20px;
              right: 10px;
@@ -40,6 +36,7 @@
              border-radius: 20px;
          }
          i.icon {
+             display: none;
              position: absolute;
              top: 20px;
              right: 10px;
@@ -60,6 +57,7 @@
              }
          }
          .exchange-now {
+             display: none;
              transition: all 0.3s ease-in-out;
              opacity: 0;
              position: absolute;
@@ -87,25 +85,60 @@
                  color: #ff6600;
                  letter-spacing: -0.33px;
                  text-align: center;
-                 cursor:pointer;
+                 cursor: pointer;
              }
          }
-     }
-     h2,
-     h3 {
-         font-family: 'Roboto', sans-serif;
-     }
-     h2 {
-         margin: 15px 0 5px;
-         font-size: 16px;
-         color: #000000;
-         letter-spacing: -0.04px;
-         text-align: left;
-     }
-     h3 {
-         font-size: 14px;
-         color: rgba(0, 0, 0, 0.48);
-         letter-spacing: -0.04px;
-         text-align: left;
+         figure {
+             width: 100%;
+             height: 300px;
+             display: inline-block;
+             width: 100%;
+             font-size: 0;
+             line-height: 0;
+             vertical-align: middle;
+             background-size: cover;
+             background-position: 50% 50%;
+             background-repeat: no-repeat;
+             &::after {
+                 content: '';
+                 position: absolute;
+                 width: 100%;
+                 height: 100%;
+                 opacity: 1;
+                 -webkit-transition: .3s ease-in-out;
+                 transition: .3s ease-in-out;
+             }
+         }
+         &.active {
+             figure::after {
+                 background: #ff6600;
+                 opacity: .5;
+                 box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
+             }
+             .exchange-now {
+                 opacity: 1;
+             }
+             .hover-img {
+                 background: rgba(255, 103, 0, .70);
+             }
+             i.icon {
+                 &.orange {
+                     font-size: 1.3rem;
+                     background: #fff;
+                     color: #ff8700;
+                     border-radius: 20px;
+                     padding: 10px;
+                 }
+             }
+         }
+         &.can-buy {
+             span.left-coints {
+                 display: none;
+             }
+             i.icon,
+             .exchange-now {
+                 display: block;
+             }
+         }
      }
  }

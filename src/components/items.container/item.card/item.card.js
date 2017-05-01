@@ -8,7 +8,8 @@ export default class ItemCard extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { active: false, canBuy: false };
+        this.state = { active: false, canBuy: false, exchange: false };
+        this.exchangeItem = this.exchangeItem.bind(this);
     }
 
     mouseHover() {
@@ -22,14 +23,20 @@ export default class ItemCard extends React.Component {
     componentWillReceiveProps(nextProps) {
         const userCash = nextProps.user.cash;
         const price = nextProps.data.price;
-        this.setState({ canBuy: (+userCash >= +price) , leftCoin:(+price - +userCash) });
+        this.setState({ canBuy: (+userCash >= +price), leftCoins: (+price - +userCash) });
+    }
+
+    exchangeItem() {
+        this.setState({ exchange: !this.state.exchange, active: false });
     }
 
     render() {
 
         const user = this.props.user;
-        const leftCoin = this.state.leftCoin;
-        const classes = classNames('hover-effect column', { active: this.state.active, 'can-buy': this.state.canBuy }  );
+        const leftCoins = this.state.leftCoins;
+        const classes = classNames('hover-effect', { active: this.state.active, 'can-buy': this.state.canBuy });
+        const classExchange = classNames('item-card flip-container', { active: this.state.exchange });
+
         const image = this.props.data.image;
         const price = this.props.data.price;
         const category = this.props.data.category;
@@ -39,29 +46,45 @@ export default class ItemCard extends React.Component {
             root: {
                 backgroundImage: `url(${image})`,
             }
-        }    
+        }
 
         return (
-            <li className="item-card">
-                <div className={classes} onMouseEnter={this.mouseHover.bind(this)} onMouseLeave={this.mouseLeave.bind(this)}>
+            <li className={classExchange}>
+                <div className="flipper">
+                    <div className="front">
+                        <div className={classes} onMouseEnter={this.mouseHover.bind(this)} onMouseLeave={this.mouseLeave.bind(this)}>
 
-                    <figure style={styles.root}>  </figure>
+                            <figure style={styles.root}>  </figure>
 
-                    <span className="left-coints" > {leftCoin > 1 ? 'TE FALTAN' : 'TE FALTA'} <i className="coin"></i> {leftCoin} </span>
+                            <span className="left-coints" > {leftCoins > 1 ? 'TE FALTAN' : 'TE FALTA'} <i className="coin"></i> {leftCoins} </span>
 
-                    <i className="material-icons icon orange" >local_mall</i>
+                            <i className="material-icons icon orange" >local_mall</i>
 
-                    <div className="exchange-now">
-                        <p>
-                            <span> <i className="coin-big "></i> {price}</span>
-                        </p>
-                        <p>
-                            <button className="exchange-button">Canjear ahora</button>
-                        </p>
+                            <div className="exchange-now">
+                                <p>
+                                    <span> <i className="coin-big "></i> {price}</span>
+                                </p>
+                                <p>
+                                    <button className="exchange-button" onClick={this.exchangeItem}>Canjear ahora</button>
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
+                    <div className="back">
+                        <p>
+                            <i className="material-icons">check_circle</i>
+                        </p>
+                        <h2>Felicitaciones!</h2>
+                        <p><span>Haz cambiado {title} por {price} monedas</span></p>
+                        <p><button onClick={this.exchangeItem}>cancelar</button></p>
+                    </div>
+
                 </div>
-                <h2>{title}</h2>
-                <h3>{category}</h3>
+                <div>
+                    <h2>{title}</h2>
+                    <h3>{category}</h3>
+                </div>
             </li>
 
         )

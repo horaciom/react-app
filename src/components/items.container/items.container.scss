@@ -16,9 +16,7 @@
                 text-align: left;
             }
             .pagination-icons {
-                @include for-size(phone-only) {
-                    display: none;
-                }
+               
                 display: inline-block;
                 >i {
                     transition: all 0.1s ease-in-out;

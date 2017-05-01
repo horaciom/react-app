@@ -9,14 +9,14 @@ import CheckoutBtn from './checkout/checkout.btn.js'
 export default class ItemsContainer extends React.Component {
     constructor(props) {
         super(props)
-        this.handler = this.handler.bind(this);
-        this.state = { paginate: 0, limitHeight: 0 }
+        this.setPagination = this.setPagination.bind(this);
+        this.state = { pagValue: 0, limitHeight: 0 }
     }
 
 
-    handler(val) {
+    setPagination(val) {
         this.setState({
-            paginate: this.state.paginate+val
+            pagValue: this.state.pagValue+val
         })
     }
 
@@ -29,7 +29,7 @@ export default class ItemsContainer extends React.Component {
         items.forEach(obj => result.push(<ItemCard data={obj} key={obj.id} user={user} />));
         const pagination = {
             style: {
-                marginTop: `${this.state.paginate}px`
+                marginTop: `${this.state.pagValue}px`
             }
         }
         
@@ -41,7 +41,7 @@ export default class ItemsContainer extends React.Component {
                         <h1>{cantOfItems} productos</h1>
                     </div>
                     <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 action-buttons-container">
-                        <Pagination handler={this.handler} pagPos={this.state.paginate} parentElement={this.refs.content} />
+                        <Pagination setPagination={this.setPagination} pagPos={this.state.pagValue} parentElement={this.refs.content} />
                         <CheckoutBtn />
                     </div>
 

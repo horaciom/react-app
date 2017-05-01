@@ -10,29 +10,38 @@ export default class ItemsContainer extends React.Component {
     constructor(props) {
         super(props)
         this.setPagination = this.setPagination.bind(this);
-        this.state = { pagValue: 0, limitHeight: 0 }
+        this.setCoins = this.setCoins.bind(this);
+        this.state = { pagValue: 0, limitHeight: 0 };
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.coins) this.setState({ coins: nextProps.coins });
+    }
+
+    setCoins(coins){
+        this.props.setCoins(coins);
+        this.setState({ coins: coins});
+    }
 
     setPagination(val) {
         this.setState({
-            pagValue: this.state.pagValue+val
+            pagValue: this.state.pagValue + val
         })
     }
 
     render() {
 
         let result = [];
-        const user = this.props.user;
+        const coins = this.state.coins;
         const items = this.props.items
         const cantOfItems = items.length;
-        items.forEach(obj => result.push(<ItemCard data={obj} key={obj.id} user={user} />));
+        items.forEach(obj => result.push(<ItemCard data={obj} key={obj.id} coins={coins}  setCoins={this.setCoins} />));
         const pagination = {
             style: {
                 marginTop: `${this.state.pagValue}px`
             }
         }
-        
+
 
         return (
             <section className="box-wrapper">
@@ -41,7 +50,7 @@ export default class ItemsContainer extends React.Component {
                         <h1>{cantOfItems} productos</h1>
                     </div>
                     <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 action-buttons-container">
-                        <Pagination setPagination={this.setPagination} pagPos={this.state.pagValue} parentElement={this.refs.content} />
+                        <Pagination setPagination={this.setPagination} pagPos={this.state.pagValue} parentElement={this.refs.content}  />
                         <CheckoutBtn />
                     </div>
 

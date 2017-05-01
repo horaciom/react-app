@@ -10,6 +10,8 @@ export default class ItemCard extends React.Component {
         super(props);
         this.state = { active: false, canBuy: false, exchange: false };
         this.exchangeItem = this.exchangeItem.bind(this);
+        this.cancelExchangeItem = this.cancelExchangeItem.bind(this);
+        
     }
 
     mouseHover() {
@@ -21,12 +23,18 @@ export default class ItemCard extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const userCash = nextProps.user.cash;
+        const userCash = nextProps.coins;
         const price = nextProps.data.price;
         this.setState({ canBuy: (+userCash >= +price), leftCoins: (+price - +userCash) });
     }
 
     exchangeItem() {
+        this.props.setCoins(this.props.coins - this.props.data.price);
+        this.setState({ exchange: !this.state.exchange, active: false });
+    }
+    
+    cancelExchangeItem() {
+        this.props.setCoins(this.props.coins + this.props.data.price);
         this.setState({ exchange: !this.state.exchange, active: false });
     }
 
@@ -77,7 +85,7 @@ export default class ItemCard extends React.Component {
                         </p>
                         <h2>Felicitaciones!</h2>
                         <p><span>Haz cambiado {title} por {price} monedas</span></p>
-                        <p><button onClick={this.exchangeItem}>cancelar</button></p>
+                        <p><button onClick={this.cancelExchangeItem}>cancelar</button></p>
                     </div>
 
                 </div>

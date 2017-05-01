@@ -89,7 +89,7 @@ export default class ItemCard extends React.Component {
                     </div>
 
                 </div>
-                <div>
+                <div className="head">
                     <h2>{title}</h2>
                     <h3>{category}</h3>
                 </div>
